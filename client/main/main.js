@@ -10,6 +10,8 @@ const CHAT_SCHEME = {
 	users: []
 };
 
+const CHAT_IS_CREATED_VARIABLE = 'chatIsCreated';
+
 Session.set(CURRENT_SUGGESTED_USER_KEY, null);
 
 function updateCurrentSuggestedUserForUser(currentUserId) {
@@ -55,6 +57,7 @@ function tryCreateChat(currentUserId, otherUserId) {
 	const otherUserMatches = getMatchObjectForUser(otherUserId);
 	if (_.contains(currentUserMatches.accepted, otherUserId) && _.contains(otherUserMatches.accepted, currentUserId)) {
 		Chats.insert(_.defaults({users: [currentUserId, otherUserId]}, CHAT_SCHEME));
+        Session.set(CHAT_IS_CREATED_VARIABLE, true);
 		return true;
 	}
 	return false;
@@ -75,7 +78,10 @@ Template.main.helpers({
 			updateCurrentSuggestedUserForUser(Meteor.userId());
 		}
 		return Session.get(CURRENT_SUGGESTED_USER_KEY);
-	}
+	},
+    showNotification: () => {
+        return Session.get(CHAT_IS_CREATED_VARIABLE);
+    }
 });
 
 Template.main.events({
