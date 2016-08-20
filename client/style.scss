@@ -1,7 +1,5 @@
-$some: red;
-
-body {
-  color: $some;
+*{
+  outline: none;
 }
 
 .jumbotron {
@@ -20,4 +18,37 @@ body {
     line-height: 1;
     width: 100%;
   }
+}
+
+.user-tinder {
+  &__link {
+    &-wrapper {
+      margin: 0 0 20px;
+    }
+  }
+}
+
+.user-ava {
+  margin: 0 0 20px;
+
+  &__img {
+    background: #ccc;
+    display: inline-block;
+    width: 310px;
+    min-height: 310px;
+  }
+}
+
+.btn {
+  &__100 {
+    width: 100%;
+  }
+
+  &__confirm {
+    margin-bottom: 20px;
+  }
+}
+
+.user-popup {
+
 }
