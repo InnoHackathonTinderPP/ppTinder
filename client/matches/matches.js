@@ -3,28 +3,33 @@
  */
 Template.matches.helpers({
     messages: function () {
-        var chatId = 1;
+        var chatId = Session.get('currentChatId');
         var user = Meteor.user();
-        var chatMessages = ChatMessages.find({chatId: chatId}).fetch();
-        var messages = [];
-        for(var i=0; i< chatMessages.length; i++){
-            var message = {};
-            var author = Meteor.users.findOne({_id:  chatMessages[i]['userId']});
-            message['authorName'] = author.username;
-            message['isMine'] = user._id == author._id;
-            message['createdTime'] = chatMessages[i]['createdTime'];
-            message['avatar'] = author.profile.avatar;
-            message['text'] = chatMessages[i]['text'];
-            messages.push(message);
-        }
-        return messages;
+        var chatMessages = ChatMessages.find({ chatId }).fetch();
+
+        return chatMessages.map((message) => {
+            var author = Meteor.users.findOne({ _id: message.userId });
+            return {
+                authorName: author.username,
+                isMine: user._id === author._id,
+                createdTime: message.createdTime,
+                avatar: author.profile.avatar,
+                text: message.text
+            };
+        });
     }
 });
+
 Template.matches.events(
     {
         'click #sendBtn': function (event) {
             var message = $("#messageArea").val();
-            ChatMessages.insert({'text': message, userId: Meteor.userId(), createdTime: new Date(), chatId: 1});
+
+            ChatMessages.insert({
+                'text': message,
+                userId: Meteor.userId(),
+                createdTime: new Date(),
+                chatId: Session.get('currentChatId')});
         },
 
         'submit .chat__controls': (event) => {
