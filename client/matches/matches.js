@@ -19,7 +19,7 @@ Template.matches.helpers({
         });
     },
     chats: function() {
-        return Chats.find({ users: { $in: [Meteor.userId] }})
+        return Chats.find({ users: { $in: [Meteor.user()._id] }});
     }
 });
 
@@ -63,3 +63,13 @@ Template.matches.events(
         }
     }
 );
+
+Template.chatTitle.helpers({
+    withWho: function() {
+        var users = this.users.filter(userId => {
+           return userId != Meteor.user()._id;
+        });
+        return Meteor.users.findOne(users[0]).username;
+    }
+
+});

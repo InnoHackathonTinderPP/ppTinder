@@ -1,6 +1,14 @@
+<template name="chatTitle">
+    <a href="/matches/{{_id}}">{{withWho}}</a> <br>
+</template>
+
 <template name="matches">
   <h1 class="center">Matches</h1>
   <div class="container">
+      {{#each chats}}
+          {{> chatTitle }}
+      {{/each}}
+
     <div class="row">
       <div class="col-xs-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
         <div class="matches">
