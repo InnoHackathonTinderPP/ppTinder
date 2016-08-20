@@ -21,3 +21,5 @@ insecure                # Allow all DB writes from clients (for prototyping)
 fourseven:scss
 twbs:bootstrap
 iron:router
+accounts-ui
+accounts-password
