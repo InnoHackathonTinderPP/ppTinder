@@ -1,0 +1,23 @@
+$some: red;
+
+body {
+  color: $some;
+}
+
+.jumbotron {
+  margin-bottom: 0;
+
+  &__wrapper {
+    height: 100vh;
+    line-height: 100vh;
+    width: 100%;
+    vertical-align: middle;
+  }
+
+  &__inner {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1;
+    width: 100%;
+  }
+}
