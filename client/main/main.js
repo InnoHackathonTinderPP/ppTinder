@@ -57,7 +57,7 @@ function tryCreateChat(currentUserId, otherUserId) {
 	const otherUserMatches = getMatchObjectForUser(otherUserId);
 	if (_.contains(currentUserMatches.accepted, otherUserId) && _.contains(otherUserMatches.accepted, currentUserId)) {
 		Chats.insert(_.defaults({users: [currentUserId, otherUserId]}, CHAT_SCHEME));
-        Session.set(CHAT_IS_CREATED_VARIABLE, true);
+		Session.set(CHAT_IS_CREATED_VARIABLE, true);
 		return true;
 	}
 	return false;
@@ -69,19 +69,24 @@ function tryCreateChat(currentUserId, otherUserId) {
 //};
 
 Template.main.helpers({
-
-	users:              () => {
+	users:                       () => {
 		return Meteor.users.find().fetch();
 	},
-	currentSuggestUser: () => {
+	currentSuggestUser:          () => {
 		if (!Session.get(CURRENT_SUGGESTED_USER_KEY)) {
 			updateCurrentSuggestedUserForUser(Meteor.userId());
 		}
 		return Session.get(CURRENT_SUGGESTED_USER_KEY);
 	},
-    showNotification: () => {
-        return Session.get(CHAT_IS_CREATED_VARIABLE);
-    }
+	currentSuggestUserLanguages: () => {
+		if (!Session.get(CURRENT_SUGGESTED_USER_KEY)) {
+			return '';
+		}
+		return Session.get(CURRENT_SUGGESTED_USER_KEY).profile.repos_langs.join(', ');
+	},
+	showNotification:            () => {
+		return Session.get(CHAT_IS_CREATED_VARIABLE);
+	}
 });
 
 Template.main.events({

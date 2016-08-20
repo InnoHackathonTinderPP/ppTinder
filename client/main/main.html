@@ -38,23 +38,15 @@
                                     <ul class="user-params__list">
                                         <li class="user-params__item">
                                             <span class="glyphicon glyphicon-ok user-params__ok-ico" aria-hidden="true"></span>
-                                            Звезд - 5
+                                            Звезд - {{ currentSuggestUser.profile.stargazers_count }}
                                         </li>
                                         <li class="user-params__item">
                                             <span class="glyphicon glyphicon-ok user-params__ok-ico" aria-hidden="true"></span>
-                                            Проектов - 15
+                                            Проектов - {{ currentSuggestUser.profile.repos_count }}
                                         </li>
                                         <li class="user-params__item">
-                                            <span class="glyphicon glyphicon-ok user-params__ok-ico" aria-hidden="true"></span>
-                                            JavaScript - 5
-                                        </li>
-                                        <li class="user-params__item">
-                                            <span class="glyphicon glyphicon-ok user-params__ok-ico" aria-hidden="true"></span>
-                                            Python - 3
-                                        </li>
-                                        <li class="user-params__item">
-                                            <span class="glyphicon glyphicon-ok user-params__ok-ico" aria-hidden="true"></span>
-                                            Html - 2
+                                          <span class="glyphicon glyphicon-ok user-params__ok-ico" aria-hidden="true"></span>
+                                          Языки: {{ currentSuggestUserLanguages }}
                                         </li>
                                     </ul>
                                 </div>

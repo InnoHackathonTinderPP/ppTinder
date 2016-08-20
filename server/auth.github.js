@@ -3,7 +3,11 @@ const APP_NAME = 'ppTinder';
 
 // Meteor.users.remove({username: 'ariser'});
 
-function githubAPICall(url, token) {
+function getGitHubApiURL(url) {
+	return GITHUB_API + url;
+}
+
+function gitHubAPICall(url, token) {
 	const options = {};
 	options.headers = {
 		//'Accept':        'application/vnd.github.v3+json',
@@ -12,7 +16,7 @@ function githubAPICall(url, token) {
 	};
 	console.log(GITHUB_API + url);
 	console.log(options);
-	return HTTP.get(GITHUB_API + url, options);
+	return HTTP.get(url, options);
 }
 
 Accounts.onCreateUser((options, user) => {
@@ -22,10 +26,17 @@ Accounts.onCreateUser((options, user) => {
 		user.profile = options.profile;
 
 		const token = user.services.github.accessToken;
-		var result = githubAPICall(`/users/${user.services.github.username}`, token);
-		var githubUserData = result.data;
-		user.profile.avatar = githubUserData.avatar_url;
-		user.profile.githubdata = githubUserData;
+		var result = gitHubAPICall(getGitHubApiURL(`/users/${user.services.github.username}`), token);
+		var gitHubUserData = result.data;
+		user.profile.avatar = gitHubUserData.avatar_url;
+		user.profile.githubdata = gitHubUserData;
+
+		result = gitHubAPICall(gitHubUserData.repos_url);
+		var gitHubReposData = result.data;
+		user.profile.repos_count = gitHubReposData.length;
+		user.profile.stargazers_count = _.reduce(gitHubReposData, (sum, repo) => sum + repo.stargazers_count, 0);
+
+		user.profile.repos_langs = _.compact(_.uniq(_.map(gitHubReposData, repo => repo.language)));
 	}
 	return user;
 });
