@@ -1,9 +1,13 @@
 const CURRENT_SUGGESTED_USER_KEY = 'currentSuggestedUser';
 
 const MATCH_SCHEME = {
-	userId  : '',
+	userId:   '',
 	accepted: [],
 	rejected: []
+};
+
+const CHAT_SCHEME = {
+	users: []
 };
 
 Session.set(CURRENT_SUGGESTED_USER_KEY, null);
@@ -25,6 +29,8 @@ function acceptUser(currentUserId, acceptedUserId) {
 		currentUserMatches.accepted.push(acceptedUserId);
 	}
 	Matches.update(currentUserMatches._id, currentUserMatches);
+
+	tryCreateChat(currentUserId, acceptedUserId);
 }
 
 function rejectUser(currentUserId, rejectedUserId) {
@@ -44,13 +50,23 @@ function getMatchObjectForUser(userId) {
 	return matchObject;
 }
 
+function tryCreateChat(currentUserId, otherUserId) {
+	const currentUserMatches = getMatchObjectForUser(currentUserId);
+	const otherUserMatches = getMatchObjectForUser(otherUserId);
+	if (_.contains(currentUserMatches.accepted, otherUserId) && _.contains(otherUserMatches.accepted, currentUserId)) {
+		Chats.insert(_.defaults({users: [currentUserId, otherUserId]}, CHAT_SCHEME));
+		return true;
+	}
+	return false;
+}
+
 //
 //Template.main.rendered = function() {
 //    getCurrentSuggestedUser();
 //};
 
 Template.main.helpers({
-	users             : () => {
+	users:              () => {
 		console.log(Meteor.users.find().fetch());
 		return Meteor.users.find().fetch();
 	},
@@ -67,7 +83,7 @@ Template.main.events({
 		acceptUser(Meteor.userId(), Session.get(CURRENT_SUGGESTED_USER_KEY)._id);
 		updateCurrentSuggestedUserForUser(Meteor.userId());
 	},
-	'click #answer_no' : () => {
+	'click #answer_no':  () => {
 		rejectUser(Meteor.userId(), Session.get(CURRENT_SUGGESTED_USER_KEY)._id);
 		updateCurrentSuggestedUserForUser(Meteor.userId());
 	}
