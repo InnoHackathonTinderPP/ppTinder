@@ -3,6 +3,4 @@ Template.main.helpers({
         console.log(Meteor.users.find().fetch());
         return Meteor.users.find().fetch();
     }
-
-
 });
