@@ -1,0 +1,37 @@
+
+.chat__console {
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.chat__controls {
+  position: absolute;
+  bottom: 0;
+  z-index: 10;
+}
+
+.message {
+  .message__text {
+    background: beige;
+    padding: .5em;
+    border-radius: .5em;
+  }
+  &--mine {
+    .message__text {
+      color: white;
+      background: dodgerblue;
+    }
+    .message__time {
+      color: grey;
+      text-align: right;
+    }
+  }
+  .message__author {
+    font-weight: bold;
+  }
+}
+
+.chat__entry + .chat__entry {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
