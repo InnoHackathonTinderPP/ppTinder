@@ -8,8 +8,15 @@ Template.chat.helpers({
 });
 
 Template.chat.events(
-    {'click #sendBtn': function (event) {
-        var message = $("#messageArea").val();
-        ChatMessages.insert({'message': message});
-    }}
+    {
+        'click #sendBtn': function (event) {
+            var message = $("#messageArea").val();
+            ChatMessages.insert({'message': message});
+            message = "";
+        },
+
+        'submit .chat__controls': (event) => {
+            event.preventDefault();
+        }
+    }
 )
