@@ -34,6 +34,12 @@ Template.matches.events(
                 chatId: Session.get('currentChatId')
             });
             $('input[name="message"]').val("");
+
+            let offsetTop = $(".chat .chat__entry:last-child").offset().top + 100000
+
+            $('.chat__console').animate({
+                scrollTop: offsetTop
+            }, 2000);
         },
 
         'submit .chat__controls': (event) => {
