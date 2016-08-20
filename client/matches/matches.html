@@ -24,18 +24,47 @@
 
           <div class="chat__console">
             {{#each messages}}
-              <div class="message {{#if isMine}} message--mine {{/if}}"  id="{{messageId}}">
-                <img src="{{avatar}}">
-                <span class="message__author">{{authorName}}</span>
-                <span class="message__text">{{message}}</span>
-                <span class="message__time">{{createdTime}}</span>
+              <div class="row chat__entry">
+                {{#if isMine}}
+                  <div class="message col-xs-8 col-xs-offset-4 message--mine" id="{{messageId}}">
+                    <div class="row">
+                      <div class="col-xs-8">
+                        <div class="message__text">{{text}}</div>
+                        <div class="message__time">{{createdTime}}</div>
+                      </div>
+                      <div class="col-xs-4">
+                        <div class="message__avatar"><img src="{{avatar}}"></div>
+                        <div class="message__author">{{authorName}}</div>
+                      </div>
+                    </div>
+                  </div>
+                {{else}}
+                  <div class="message col-xs-8" id="{{messageId}}">
+                    <div class="row">
+                      <div class="col-xs-4">
+                        <div class="message__avatar"><img src="{{avatar}}"></div>
+                        <div class="message__author">{{authorName}}</div>
+                      </div>
+                      <div class="col-xs-8">
+                        <div class="message__text">{{text}}</div>
+                        <div class="message__time">{{createdTime}}</div>
+                      </div>
+                    </div>
+                  </div>
+                {{/if}}
               </div>
             {{/each}}
           </div>
 
           <form class="chat__controls">
-            <input type="text" placeholder="Message" name="message" id="message">
-            <input type="submit" name="Send" id="sendBtn">
+            <div class="row">
+              <div class="col-xs-8">
+                <input class="form-control" type="text" placeholder="Message" name="message">
+              </div>
+              <div class="col-xs-4">
+                <input class="btn btn-primary btn-block" type="submit" name="Send" id="sendBtn" value="Send" text="Send">
+              </div>
+            </div>
           </form>
 
         </div>
