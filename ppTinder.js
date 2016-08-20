@@ -7,7 +7,7 @@ if (Meteor.isClient) {
       return Clicks.find().count();
     },
       isLoggedIn: function() {
-          return false;
+          return true;
       }
   });
 
