@@ -21,8 +21,9 @@ Template.backdoor.events({
 							email   : user.email,
 							password: 'password',
 							profile : {
-								name: `${user.name.first} ${user.name.last}`
-							}
+								name: `${user.name.first} ${user.name.last}`,
+								avatar: user.picture.large
+							},
 						});
 					})
 					.finally(() => {
