@@ -1,3 +1,7 @@
+*{
+  outline: none;
+}
+
 .jumbotron {
   margin-bottom: 0;
 
@@ -19,19 +23,19 @@
 .user-tinder {
   &__link {
     &-wrapper {
-      margin: 0 0 15px;
+      margin: 0 0 20px;
     }
   }
 }
 
 .user-ava {
-  margin: 0 0 15px;
+  margin: 0 0 20px;
 
   &__img {
     background: #ccc;
-    display: block;
-    width: 100%;
-    min-height: 100px;
+    display: inline-block;
+    width: 310px;
+    min-height: 310px;
   }
 }
 
@@ -41,7 +45,7 @@
   }
 
   &__confirm {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
   }
 }
 
