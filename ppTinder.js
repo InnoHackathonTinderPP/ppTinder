@@ -3,11 +3,8 @@ var Clicks = new Meteor.Collection('clicks');
 if (Meteor.isClient) {
   // counter starts at 0
   Template.main.helpers({
-    counter: function () {
-      return Clicks.find().count();
-    },
       isLoggedIn: function() {
-          return true;
+          return Boolean(Meteor.userId());
       }
   });
 
