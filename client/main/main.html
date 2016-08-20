@@ -9,16 +9,14 @@
                 <div class="jumbotron text-center">
                     <div class="row">
                         <div class="col-xs-10 col-xs-offset-1">
+                            {{#if showNotification}}
                             <div class="alert alert-success " role="alert">
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="false">&times;</span>
                                 </button>
-                                Новое предложение от <a href="#">bredpitt</a>
+                                У вас появилась пара.
                             </div>
-
-                            <div class="user-popup">
-                                <div class="user-popup-close"></div>
-                            </div>
+                            {{/if}}
                         </div>
                     </div>
 
@@ -54,7 +52,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                     <div class="row">
                         <div class="col-xs-10 col-sm-5 col-xs-offset-1">

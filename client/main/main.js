@@ -10,6 +10,8 @@ const CHAT_SCHEME = {
 	users: []
 };
 
+const CHAT_IS_CREATED_VARIABLE = 'chatIsCreated';
+
 Session.set(CURRENT_SUGGESTED_USER_KEY, null);
 
 function updateCurrentSuggestedUserForUser(currentUserId) {
@@ -55,6 +57,7 @@ function tryCreateChat(currentUserId, otherUserId) {
 	const otherUserMatches = getMatchObjectForUser(otherUserId);
 	if (_.contains(currentUserMatches.accepted, otherUserId) && _.contains(otherUserMatches.accepted, currentUserId)) {
 		Chats.insert(_.defaults({users: [currentUserId, otherUserId]}, CHAT_SCHEME));
+		Session.set(CHAT_IS_CREATED_VARIABLE, true);
 		return true;
 	}
 	return false;
@@ -66,10 +69,10 @@ function tryCreateChat(currentUserId, otherUserId) {
 //};
 
 Template.main.helpers({
-	users:              () => {
+	users:                       () => {
 		return Meteor.users.find().fetch();
 	},
-	currentSuggestUser: () => {
+	currentSuggestUser:          () => {
 		if (!Session.get(CURRENT_SUGGESTED_USER_KEY)) {
 			updateCurrentSuggestedUserForUser(Meteor.userId());
 		}
@@ -80,6 +83,9 @@ Template.main.helpers({
 			return '';
 		}
 		return Session.get(CURRENT_SUGGESTED_USER_KEY).profile.repos_langs.join(', ');
+	},
+	showNotification:            () => {
+		return Session.get(CHAT_IS_CREATED_VARIABLE);
 	}
 });
 
