@@ -66,7 +66,6 @@ function tryCreateChat(currentUserId, otherUserId) {
 //};
 
 Template.main.helpers({
-
 	users:              () => {
 		return Meteor.users.find().fetch();
 	},
@@ -75,6 +74,12 @@ Template.main.helpers({
 			updateCurrentSuggestedUserForUser(Meteor.userId());
 		}
 		return Session.get(CURRENT_SUGGESTED_USER_KEY);
+	},
+	currentSuggestUserLanguages: () => {
+		if (!Session.get(CURRENT_SUGGESTED_USER_KEY)) {
+			return '';
+		}
+		return Session.get(CURRENT_SUGGESTED_USER_KEY).profile.repos_langs.join(', ');
 	}
 });
 
