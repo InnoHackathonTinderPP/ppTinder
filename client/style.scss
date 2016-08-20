@@ -45,6 +45,26 @@
   }
 }
 
-.user-popup {
+.user-params {
+  text-align: left;
 
+  &__h3 {
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+
+  &__list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 30px;
+  }
+
+  &__item {
+    margin: 0 0 15px;
+    font-size: 1.5em;
+  }
+
+  &__ok-ico {
+    font-size: 0.7em;
+  }
 }
