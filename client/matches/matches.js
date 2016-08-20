@@ -14,19 +14,22 @@ Template.matches.helpers({
                 isMine: user._id === author._id,
                 createdTime: message.createdTime,
                 avatar: author.profile.avatar,
-                text: message.text
+                message: message.text
             };
         });
+    },
+    chats: function() {
+        return Chats.find({ users: { $in: [Meteor.userId] }})
     }
 });
 
 Template.matches.events(
     {
         'click #sendBtn': function (event) {
-            var message = $("#messageArea").val();
+            var message = $("#message").val();
 
             ChatMessages.insert({
-                'text': message,
+                text: message,
                 userId: Meteor.userId(),
                 createdTime: new Date(),
                 chatId: Session.get('currentChatId')});
