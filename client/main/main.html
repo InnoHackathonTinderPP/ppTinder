@@ -20,8 +20,14 @@
                             {{/if}}
                         </div>
                     </div>
-
-                    <div class="row user-tinder__row">
+	                {{#if isSuggestionsEmpty}}
+		                <div class="row user-tinder__row">
+			                <div class="col-xs-10 col-xs-offset-1">
+				                <p class="lead">Люди кончились</p>
+			                </div>
+		                </div>
+	                {{else}}
+		                <div class="row user-tinder__row">
                         <div class="col-xs-10 col-sm-5 col-xs-offset-1">
                             <div class="user-tinder text-center">
                                 <div class="user-ava">
@@ -64,6 +70,7 @@
                             <button type="button" class="btn btn__no btn-danger btn-block btn__confirm" id="answer_no">No</button>
                         </div>
                     </div>
+		                {{/if}}
                 </div>
             </div>
         </div>

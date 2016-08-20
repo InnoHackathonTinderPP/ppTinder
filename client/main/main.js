@@ -10,18 +10,21 @@ const CHAT_SCHEME = {
 	users: []
 };
 
-const CHAT_IS_CREATED_VARIABLE = 'chatIsCreated';
+const CHAT_IS_CREATED_KEY = 'chatIsCreated';
+
+const IS_SUGGESTIONS_EMPTY_KEY = 'isSuggestionsEmpty';
 
 Session.set(CURRENT_SUGGESTED_USER_KEY, null);
+Session.set(IS_SUGGESTIONS_EMPTY_KEY, false);
 
 function updateCurrentSuggestedUserForUser(currentUserId) {
 	var currentUserMatches = getMatchObjectForUser(currentUserId);
 	var suggested = Meteor.users.find({_id: {$nin: [Meteor.user()._id, ...currentUserMatches.rejected, ...currentUserMatches.accepted]}}).fetch();
 	if (!suggested.length) {
 		console.log("You're loser");
-		Session.set('currentSuggestedUser', {username: 'Noone'});
+		Session.set(IS_SUGGESTIONS_EMPTY_KEY, true);
 	} else {
-		Session.set('currentSuggestedUser', _.sample(suggested));
+		Session.set(CURRENT_SUGGESTED_USER_KEY, _.sample(suggested));
 	}
 }
 
@@ -57,7 +60,7 @@ function tryCreateChat(currentUserId, otherUserId) {
 	const otherUserMatches = getMatchObjectForUser(otherUserId);
 	if (_.contains(currentUserMatches.accepted, otherUserId) && _.contains(otherUserMatches.accepted, currentUserId)) {
 		Chats.insert(_.defaults({users: [currentUserId, otherUserId]}, CHAT_SCHEME));
-		Session.set(CHAT_IS_CREATED_VARIABLE, true);
+		Session.set(CHAT_IS_CREATED_KEY, true);
 		return true;
 	}
 	return false;
@@ -84,9 +87,8 @@ Template.main.helpers({
 		}
 		return Session.get(CURRENT_SUGGESTED_USER_KEY).profile.repos_langs.join(', ');
 	},
-	showNotification:            () => {
-		return Session.get(CHAT_IS_CREATED_VARIABLE);
-	}
+	showNotification:            () => Session.get(CHAT_IS_CREATED_KEY),
+	isSuggestionsEmpty:          () => Session.get(IS_SUGGESTIONS_EMPTY_KEY)
 });
 
 Template.main.events({
