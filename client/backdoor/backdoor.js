@@ -1,6 +1,6 @@
 const RANDOM_ACCOUNTS_NUMBER = 25;
 
-Session.set('spamProgress', '');
+Session.set('spamProgress', 0);
 
 Template.backdoor.helpers({
 	spamProgress: () => Session.get('spamProgress'),
