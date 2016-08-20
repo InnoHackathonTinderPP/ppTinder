@@ -1,0 +1,8 @@
+<template name="chat">
+    <textarea name="message" id="messageArea"></textarea>
+    <button id="sendBtn">Send!</button>
+    {{#each messages}}
+        {{message}}
+        <br>
+    {{/each}}
+</template>

@@ -1,7 +1,27 @@
 <template name="main">
-    <h1>hello</h1>
-    <button>Click Me</button>
-    <p class="text-muted">You've pressed the button {{counter}} times.</p>
+    {{#if isLoggedIn}}
+    <div class="container">
+        <div class="jumbotron__wrapper">
+            <div class="jumbotron__inner">
+                <div class="jumbotron text-center">
+                    <h1>Добро пожаловать </h1>
 
-{{> loginButtons}}
+                </div>
+            </div>
+        </div>
+    </div>
+    {{else}}
+    <div class="container">
+        <div class="jumbotron__wrapper">
+            <div class="jumbotron__inner">
+                <div class="jumbotron text-center">
+                    <h1>Добро пожаловать в ppTinder.</h1>
+                    <p class="lead">Найди себе пару для программирования!</p>
+                    <div>{{> loginButtons}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/if}}
+
 </template>
