@@ -28,7 +28,9 @@
                                     <img src="{{currentSuggestUser.profile.avatar}}" class="user-ava__img img-circle">
                                 </div>
                                 <div class="user-tinder__link-wrapper">
-                                    <a href="#" class="user-tinder__link">{{currentSuggestUser.username}}</a>
+                                    <a href="{{currentSuggestUser.profile.githubdata.html_url}}" target="_blank" class="user-tinder__link">
+	                                    {{currentSuggestUser.username}}
+                                    </a>
                                 </div>
                             </div>
                         </div>
