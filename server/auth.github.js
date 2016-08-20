@@ -12,7 +12,7 @@ function gitHubAPICall(url, token) {
 	options.headers = {
 		//'Accept':        'application/vnd.github.v3+json',
 		'User-Agent':    APP_NAME,
-		//'Authorization': `token ${token}`
+		'Authorization': `token ${token}`
 	};
 	console.log(GITHUB_API + url);
 	console.log(options);
@@ -31,7 +31,7 @@ Accounts.onCreateUser((options, user) => {
 		user.profile.avatar = gitHubUserData.avatar_url;
 		user.profile.githubdata = gitHubUserData;
 
-		result = gitHubAPICall(gitHubUserData.repos_url);
+		result = gitHubAPICall(gitHubUserData.repos_url, token);
 		var gitHubReposData = result.data;
 		user.profile.repos_count = gitHubReposData.length;
 		user.profile.stargazers_count = _.reduce(gitHubReposData, (sum, repo) => sum + repo.stargazers_count, 0);

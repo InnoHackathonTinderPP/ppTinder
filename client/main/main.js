@@ -88,7 +88,8 @@ Template.main.helpers({
 		return Session.get(CURRENT_SUGGESTED_USER_KEY).profile.repos_langs.join(', ');
 	},
 	showNotification:            () => Session.get(CHAT_IS_CREATED_KEY),
-	isSuggestionsEmpty:          () => Session.get(IS_SUGGESTIONS_EMPTY_KEY)
+	isSuggestionsEmpty:          () => Session.get(IS_SUGGESTIONS_EMPTY_KEY),
+	chatsCount:                  () => Chats.find({users: {$in: [Meteor.user()._id]}}).count()
 });
 
 Template.main.events({
