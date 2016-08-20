@@ -1,5 +1,5 @@
 <template name="matches">
-  <h1>matches</h1>
+  <h1>Matches</h1>
 
   <div class="container">
     <div class="row">
@@ -8,10 +8,10 @@
           {{> Match}}
         </div>
         <div class="chat">
-          <div class="chat-console">
-            {{< Message}}
+          <div class="chat__console">
+            {{> Message}}
           </div>
-          <form class="chat-controls">
+          <form class="chat__controls">
             <input type="text" placeholder="Message">
             <input type="submit" name="Send">
           </form>
@@ -24,14 +24,14 @@
 
 <template name="Match">
   <div class="match" id="{{matchId}}">
-    <img class="match-avatar" src="{{matchAvatar}}">
-    <span class="match-login">{{matchLogin}}</span>
+    <img class="match__avatar" src="{{matchAvatar}}">
+    <span class="match__login">{{matchLogin}}</span>
   </div>
 </template>
 
 <template name="Message">
-  <div class="chat-message" id="{{messageId}}">
-    <span class="message-author">{{messageAuthor}}</span>
-    <span class="message-text">{{messageText}}</span>
+  <div class="message" id="{{messageId}}">
+    <span class="message__author">{{messageAuthor}}</span>
+    <span class="message__text">{{messageText}}</span>
   </div>
 </template>
