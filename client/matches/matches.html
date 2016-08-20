@@ -3,37 +3,45 @@
 </template>
 
 <template name="matches">
-  <h1 class="center">Matches</h1>
-  <div class="container">
-      {{#each chats}}
-          {{> chatTitle }}
-      {{/each}}
 
+  <div class="matches-page__chats container">
     <div class="row">
-      <div class="col-xs-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+      <div class="col-xs-12">
+        <h1 class="center">Matches</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
         <div class="matches">
-          {{#each matches}}
-            <div class="match" id="{{matchId}}">
-              <img class="match__avatar" src="{{matchAvatar}}">
-              <span class="match__login">{{matchLogin}}</span>
+          {{#each chats}}
+            <div class="match">
+              <div class="match__avatar">
+                <img class="match__avatar" src="{{matchAvatar}}">
+              </div>
+              <div class="match__login">{{> chatTitle}}</div>
             </div>
           {{/each}}
         </div>
+      </div>
+    </div>
+  </div>
 
+  <div class="matches-page__chat container">
+    <div class="row">
+      <div class="col-xs-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
         <div class="chat">
-
           <div class="chat__console">
             {{#each messages}}
               <div class="row chat__entry">
                 {{#if isMine}}
                   <div class="message col-xs-8 col-xs-offset-4 message--mine" id="{{messageId}}">
                     <div class="row">
-                      <div class="col-xs-8">
+                      <div class="col-xs-9">
                         <div class="message__text">{{text}}</div>
                         <div class="message__time">{{createdTime}}</div>
                       </div>
-                      <div class="col-xs-4">
-                        <div class="message__avatar"><img src="{{avatar}}"></div>
+                      <div class="col-xs-3">
+                        <div class="message__avatar"><img src="https://randomuser.me/api/portraits/women/10.jpg"></div>
                         <div class="message__author">{{authorName}}</div>
                       </div>
                     </div>
@@ -41,11 +49,11 @@
                 {{else}}
                   <div class="message col-xs-8" id="{{messageId}}">
                     <div class="row">
-                      <div class="col-xs-4">
-                        <div class="message__avatar"><img src="{{avatar}}"></div>
+                      <div class="col-xs-3">
+                        <div class="message__avatar"><img src="https://randomuser.me/api/portraits/women/11.jpg"></div>
                         <div class="message__author">{{authorName}}</div>
                       </div>
-                      <div class="col-xs-8">
+                      <div class="col-xs-9">
                         <div class="message__text">{{text}}</div>
                         <div class="message__time">{{createdTime}}</div>
                       </div>

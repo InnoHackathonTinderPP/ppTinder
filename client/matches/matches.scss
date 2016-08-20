@@ -1,13 +1,32 @@
 
+.matches-page__chats {
+  background: ghostwhite;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.matches-page__chat {
+  height: 100vh;
+}
+
 .chat__console {
   height: 100vh;
+  padding-top: 9em;
+  padding-bottom: 4em;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .chat__controls {
-  position: absolute;
   bottom: 0;
+  position: absolute;
+  width: 100%;
   z-index: 10;
+  padding: 1em;
+  background: ghostwhite;
+  border-radius: 1em 1em 0 0;
 }
 
 .message {
@@ -22,16 +41,34 @@
       background: dodgerblue;
     }
     .message__time {
-      color: grey;
       text-align: right;
     }
   }
+  .message--mine {
+    color: grey;
+  }
   .message__author {
     font-weight: bold;
+    text-align: center;
+  }
+  .message__avatar {
+    text-align: center;
+
+    img {
+      max-height: 5em;
+      max-width: 5em;
+      border-radius: 2.5em;
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
 }
 
 .chat__entry + .chat__entry {
   margin-top: 1em;
   margin-bottom: 1em;
+}
+
+body {
+  height: 100vh;
 }
