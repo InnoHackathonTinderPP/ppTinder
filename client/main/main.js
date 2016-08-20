@@ -12,7 +12,6 @@ const getCurrentSuggestedUser = () => {
 
 Template.main.helpers({
     users: () => {
-        console.log(Meteor.users.find().fetch());
         return Meteor.users.find().fetch();
     },
     currentSuggestUser: () => {
