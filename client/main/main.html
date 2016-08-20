@@ -1,4 +1,16 @@
 <template name="main">
+    {{#if isLoggedIn}}
+    <div class="container">
+        <div class="jumbotron__wrapper">
+            <div class="jumbotron__inner">
+                <div class="jumbotron text-center">
+                    <h1>Добро пожаловать </h1>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    {{else}}
     <div class="container">
         <div class="jumbotron__wrapper">
             <div class="jumbotron__inner">
@@ -10,7 +22,10 @@
             </div>
         </div>
     </div>
-    {{#each users}}
-        <b>{{username}}</b>
-    {{/each}}
+    {{/if}}
+
+	{{#each users}}
+		<b>{{username}}</b>
+	{{/each}}
+
 </template>

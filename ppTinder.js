@@ -5,7 +5,10 @@ if (Meteor.isClient) {
   Template.main.helpers({
     counter: function () {
       return Clicks.find().count();
-    }
+    },
+      isLoggedIn: function() {
+          return false;
+      }
   });
 
   Template.main.events({
