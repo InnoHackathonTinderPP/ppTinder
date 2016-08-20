@@ -1,17 +1,20 @@
+var Clicks = new Meteor.Collection('clicks');
 if (Meteor.isClient) {
   // counter starts at 0
   Session.setDefault('counter', 0);
 
   Template.hello.helpers({
     counter: function () {
-      return Session.get('counter');
+      return Clicks.find().count();
     }
   });
 
   Template.hello.events({
     'click button': function () {
       // increment the counter when button is clicked
-      Session.set('counter', Session.get('counter') + 1);
+      console.log(123);
+      Clicks.insert({ click: 123 });
+      Session.set('counter', Clicks.find().count());
     }
   });
 }
