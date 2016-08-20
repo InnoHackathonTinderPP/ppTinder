@@ -2,6 +2,8 @@
   outline: none;
 }
 
+
+
 .jumbotron {
   margin-bottom: 0;
 
@@ -25,6 +27,10 @@
     &-wrapper {
       margin: 0 0 20px;
     }
+  }
+
+  &__row {
+    padding-bottom: 160px;
   }
 }
 
@@ -66,5 +72,32 @@
 
   &__ok-ico {
     font-size: 0.7em;
+  }
+}
+
+.btn-fixed {
+  position: fixed;
+  display: block;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  margin: 0 auto;
+  padding: 25px 10px;
+  background: #eee;
+  border-top: 1px solid #ddd;
+}
+
+@media (min-width: 768px) {
+  .btn-fixed {
+    position: static;
+    display: block;
+    margin: 0 auto;
+    padding: 0;
+    background: none;
+    border-top: none;
+  }
+
+  .user-tinder__row {
+    padding-bottom: 0;
   }
 }
