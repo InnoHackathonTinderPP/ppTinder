@@ -69,10 +69,10 @@ function tryCreateChat(currentUserId, otherUserId) {
 //};
 
 Template.main.helpers({
-	users:                       () => {
+	users: () => {
 		return Meteor.users.find().fetch();
 	},
-	currentSuggestUser:          () => {
+	currentSuggestUser: () => {
 		if (!Session.get(CURRENT_SUGGESTED_USER_KEY)) {
 			updateCurrentSuggestedUserForUser(Meteor.userId());
 		}
@@ -84,8 +84,11 @@ Template.main.helpers({
 		}
 		return Session.get(CURRENT_SUGGESTED_USER_KEY).profile.repos_langs.join(', ');
 	},
-	showNotification:            () => {
+	showNotification: () => {
 		return Session.get(CHAT_IS_CREATED_VARIABLE);
+	},
+	chatsCount: () => {
+		return Chats.find({ users: { $in: [Meteor.user()._id] }}).count();
 	}
 });
 
