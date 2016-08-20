@@ -47,7 +47,6 @@ Template.chatTitle.helpers({
         var users = this.users.filter(userId => {
            return userId != Meteor.user()._id;
         });
-        return Meteor.users.findOne(users[0]).username;
+        return Meteor.users.findOne(users[0]);
     }
-
 });

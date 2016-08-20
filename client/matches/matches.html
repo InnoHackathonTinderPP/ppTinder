@@ -1,5 +1,7 @@
 <template name="chatTitle">
-    <a href="/matches/{{_id}}">{{withWho}}</a> <br>
+    <a href="/matches/{{_id}}">
+        {{withWho.username}} <img src="{{withWho.profile.avatar}}" width="10" height="10"/>
+    </a> <br>
 </template>
 
 <template name="matches">
