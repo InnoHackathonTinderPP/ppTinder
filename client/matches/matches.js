@@ -13,7 +13,7 @@ Template.matches.helpers({
                 authorName: author.username,
                 isMine: user._id === author._id,
                 createdTime: moment(message.createdTime).calendar(),
-                avatar: author.profile.avatar,
+                avatar: author.profile && author.profile.avatar,
                 text: message.text
             };
         });
