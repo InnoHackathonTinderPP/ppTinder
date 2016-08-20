@@ -1,5 +1,37 @@
 <template name="matches">
-    <h1>matches</h1>
+  <h1>matches</h1>
 
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <div class="matches">
+          {{> Match}}
+        </div>
+        <div class="chat">
+          <div class="chat-console">
+            {{< Message}}
+          </div>
+          <form class="chat-controls">
+            <input type="text" placeholder="Message">
+            <input type="submit" name="Send">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
+</template>
+
+<template name="Match">
+  <div class="match" id="{{matchId}}">
+    <img class="match-avatar" src="{{matchAvatar}}">
+    <span class="match-login">{{matchLogin}}</span>
+  </div>
+</template>
+
+<template name="Message">
+  <div class="chat-message" id="{{messageId}}">
+    <span class="message-author">{{messageAuthor}}</span>
+    <span class="message-text">{{messageText}}</span>
+  </div>
 </template>
